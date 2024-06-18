@@ -89,6 +89,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleUnit"",
+                    ""type"": ""Button"",
+                    ""id"": ""21e80e26-6d92-4632-b8f3-05a870a74edb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -100,6 +109,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1eb4483f-8f89-4d56-a45b-a9e6c92b13a0"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleUnit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -117,6 +137,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         // BatShortcuts
         m_BatShortcuts = asset.FindActionMap("BatShortcuts", throwIfNotFound: true);
         m_BatShortcuts_EndTurn = m_BatShortcuts.FindAction("EndTurn", throwIfNotFound: true);
+        m_BatShortcuts_CycleUnit = m_BatShortcuts.FindAction("CycleUnit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,11 +292,13 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_BatShortcuts;
     private List<IBatShortcutsActions> m_BatShortcutsActionsCallbackInterfaces = new List<IBatShortcutsActions>();
     private readonly InputAction m_BatShortcuts_EndTurn;
+    private readonly InputAction m_BatShortcuts_CycleUnit;
     public struct BatShortcutsActions
     {
         private @PlayerActions m_Wrapper;
         public BatShortcutsActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @EndTurn => m_Wrapper.m_BatShortcuts_EndTurn;
+        public InputAction @CycleUnit => m_Wrapper.m_BatShortcuts_CycleUnit;
         public InputActionMap Get() { return m_Wrapper.m_BatShortcuts; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,6 +311,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @EndTurn.started += instance.OnEndTurn;
             @EndTurn.performed += instance.OnEndTurn;
             @EndTurn.canceled += instance.OnEndTurn;
+            @CycleUnit.started += instance.OnCycleUnit;
+            @CycleUnit.performed += instance.OnCycleUnit;
+            @CycleUnit.canceled += instance.OnCycleUnit;
         }
 
         private void UnregisterCallbacks(IBatShortcutsActions instance)
@@ -295,6 +321,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @EndTurn.started -= instance.OnEndTurn;
             @EndTurn.performed -= instance.OnEndTurn;
             @EndTurn.canceled -= instance.OnEndTurn;
+            @CycleUnit.started -= instance.OnCycleUnit;
+            @CycleUnit.performed -= instance.OnCycleUnit;
+            @CycleUnit.canceled -= instance.OnCycleUnit;
         }
 
         public void RemoveCallbacks(IBatShortcutsActions instance)
@@ -323,5 +352,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     public interface IBatShortcutsActions
     {
         void OnEndTurn(InputAction.CallbackContext context);
+        void OnCycleUnit(InputAction.CallbackContext context);
     }
 }

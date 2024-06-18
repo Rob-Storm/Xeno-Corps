@@ -51,4 +51,5 @@ public class InputManager : Singleton<InputManager>
     {
         return inputActions.Camera.Pan.ReadValue<Vector2>();
     }
+
 }

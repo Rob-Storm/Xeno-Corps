@@ -2,24 +2,25 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] private bool  IsSelected { get; set; }
+    [SerializeField] private bool IsSelected { get; set; } = false;
 
-    private Renderer renderer;
+    [SerializeField] private SpriteRenderer renderer;
 
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
+        //renderer = GetComponent<SpriteRenderer>();
     }
 
     public void Select()
     {
         IsSelected = true;
-        
+        UpdateSelectionVisuals();
     }
 
     public void Deselect()
     {
-
+        IsSelected = false;
+        UpdateSelectionVisuals();
     }
 
     private void UpdateSelectionVisuals()

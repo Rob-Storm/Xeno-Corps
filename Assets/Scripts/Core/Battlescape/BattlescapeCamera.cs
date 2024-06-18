@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlescapeCamera : MonoBehaviour
+public class BattlescapeCamera : Singleton<BattlescapeCamera>
 {
-    [SerializeField] private Camera Camera;
+    public Camera Camera;
 
     private void Awake()
     {
-        //Camera = GameObject.Find("Camera").GetComponent<Camera>();
+        Camera = GameObject.Find("Camera").GetComponent<Camera>();
     }
 
     private void Update()
