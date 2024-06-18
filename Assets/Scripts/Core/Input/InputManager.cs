@@ -3,24 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
-    public static InputManager Instance { get; private set; }
     private PlayerActions inputActions;
 
     private void Awake()
     {
         inputActions = new PlayerActions();
         inputActions.Camera.Enable();
+        inputActions.GeoShortcuts.Enable();
+        inputActions.BatShortcuts.Disable();
+    }
 
-        if (Instance == null)
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameStateChanged += Instance_OnGameStateChanged;
+    }
+
+    private void Instance_OnGameStateChanged(object sender, StateEventArgs e)
+    {
+        switch (e.NewGameState)
         {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(Instance);
+            case GameState.Geoscape:
+                inputActions.GeoShortcuts.Enable();
+                inputActions.BatShortcuts.Disable();
+                break;
+            case GameState.Briefing:
+                inputActions.GeoShortcuts.Disable();
+                inputActions.BatShortcuts.Disable();
+                break;
+            case GameState.BattleScape:
+                inputActions.GeoShortcuts.Disable();
+                inputActions.BatShortcuts.Enable();
+                break;
+            default:
+                Debug.LogWarning("No Valid GameState Set!");
+                break;
         }
     }
 

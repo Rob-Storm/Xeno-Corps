@@ -18,14 +18,11 @@ public class MusicManager : MonoBehaviour
 
     public void OnEnable()
     {
-        GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
     }
-
-
-
     public void OnDisable()
     {
-        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+        GameManager.Instance.OnGameStateChanged -= GameManager_OnGameStateChanged;
     }
 
     private void Start()

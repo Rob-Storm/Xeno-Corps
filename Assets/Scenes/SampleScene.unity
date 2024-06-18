@@ -19308,7 +19308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1d46cd405bea8448e75dd3c1914986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 462063145}
   Camera: {fileID: 519420031}
 --- !u!4 &2120458986
 Transform:

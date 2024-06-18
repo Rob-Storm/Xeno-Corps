@@ -1,29 +1,15 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public GameState GameState { get; private set; } = GameState.Geoscape;
 
-    public static GameObject ManagerGameObject {get; private set; }
+    public GameObject ManagerGameObject {get; private set; }
 
     public delegate void GameStateChanged(object sender, StateEventArgs e);
 
-    public static event GameStateChanged OnGameStateChanged;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(Instance);
-        }
-    }
+    public event GameStateChanged OnGameStateChanged;
 
     public void GameStateTransition(GameState NewGameState)
     {

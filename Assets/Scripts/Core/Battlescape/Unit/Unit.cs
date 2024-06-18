@@ -2,20 +2,31 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    #region References
+    [SerializeField] private bool  IsSelected { get; set; }
 
-    
+    private Renderer renderer;
 
-    #endregion
+    private void Awake()
+    {
+        renderer = GetComponent<Renderer>();
+    }
 
-    //Stats
-    [SerializeField] private string Name;
+    public void Select()
+    {
+        IsSelected = true;
+        
+    }
 
-    #region Combat Stats
+    public void Deselect()
+    {
 
-    [SerializeField] private int TimeUnits;
+    }
 
-    #endregion
-
-
+    private void UpdateSelectionVisuals()
+    {
+        if(IsSelected) 
+            renderer.material.color = Color.green;
+        else
+            renderer.material.color = Color.white;
+    }
 }
