@@ -1,0 +1,88 @@
+{
+    "name": "PlayerActions",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "bed96611-8fe5-4f43-9bf8-2fbf1f20ba99",
+            "actions": [
+                {
+                    "name": "PanToggle",
+                    "type": "Button",
+                    "id": "a709f9ba-7030-47f9-9dc4-bc4b4180252c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pan",
+                    "type": "Value",
+                    "id": "e5b5ce38-1c73-49ab-ab9b-51fd38f63ea1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dcecc665-aa51-4771-91a6-25b9f9782a9a",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PanToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a04e323-9d6b-4f32-b999-88a440e51382",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GeoShortcuts",
+            "id": "d64da95e-161d-40da-9ec7-f29fd074ee74",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "BatShortcuts",
+            "id": "fa479cfa-4aaf-41d2-869f-4bd2d638f384",
+            "actions": [
+                {
+                    "name": "EndTurn",
+                    "type": "Button",
+                    "id": "f43c64bb-e484-4811-9bb3-8fdb8a1049f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "20b121dc-9449-4ee3-a11b-347ff335de67",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
