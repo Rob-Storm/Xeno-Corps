@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitSelectionManager : Singleton<UnitSelectionManager>
@@ -29,7 +26,17 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
         }
     }
 
-    private void Start()
+    private void OnEnable()
+    {
+        BattlescapeManager.Instance.OnFinishedSpawning += Instance_OnFinishedSpawning;
+    }
+
+    private void OnDisable()
+    {
+        BattlescapeManager.Instance.OnFinishedSpawning -= Instance_OnFinishedSpawning;
+    }
+
+    private void Instance_OnFinishedSpawning(object sender, EventArgs e)
     {
         selectedIndex = 0;
         SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());

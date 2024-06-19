@@ -34,6 +34,8 @@ public class BattlescapeManager : Singleton<BattlescapeManager>
 
             Units.Add(newUnit);
         }
+
+        OnFinishedSpawning?.Invoke(this, null);
     }
 
     public List<GameObject> GetUnits()
