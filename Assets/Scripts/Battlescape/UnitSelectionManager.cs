@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class UnitSelectionManager : Singleton<UnitSelectionManager>
 {
-    public static UnitSelectionManager Instance { get; private set; }
-
     [SerializeField] private LayerMask unitLayerMask;
 
     private Unit selectedUnit;
@@ -13,18 +11,6 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
     public delegate void SelectedUnitChanged(object sender, UnitEventArgs e);
 
     public event SelectedUnitChanged OnSelectedUnitChanged;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(Instance);
-        }
-    }
 
     private void OnEnable()
     {
