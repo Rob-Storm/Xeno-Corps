@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1116790842387051798}
   - component: {fileID: 8802279533390382223}
   - component: {fileID: 1901243378254402136}
+  - component: {fileID: 6307659783593448897}
   m_Layer: 3
   m_Name: Unit
   m_TagString: Untagged
@@ -133,4 +134,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a461bc18843d39a4b9246b1ca9284055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 1116790842387051798}
+  spriteRenderer: {fileID: 1116790842387051798}
+  stats: {fileID: 11400000, guid: c9ed0e0e2552b104198cda640c3796fa, type: 2}
+  FirstNamesList: {fileID: 11400000, guid: 04c79e25ccfe2704e94b01bc5f893597, type: 2}
+  LastNamesList: {fileID: 11400000, guid: 063d3b71e8349be4b9a87c07214bcdd6, type: 2}
+--- !u!114 &6307659783593448897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983743851113647158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f1f046ed8411e4082c7a6ccbc434ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory: []
+  LeftHand: {fileID: 0}
+  RightHand: {fileID: 0}
+  Unit: {fileID: 1901243378254402136}

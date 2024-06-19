@@ -1,19 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattlescapeManager : Singleton<BattlescapeManager>
 {
-    public List<Unit> Units;
+    [SerializeField] private List<GameObject> Units;
     [SerializeField] private GameObject unitPrefab;
     private Vector2 spawnPosition;
+    int XCOMAgents = 4;
+
+    public event EventHandler OnFinishedSpawning;
+
+    private void Awake()
+    {
+        Units = new List<GameObject>();
+    }
 
     private void Start()
     {
         spawnPosition = new Vector2 (0, 0.15f);
-        for(int i = 0; i < Units.Count; i++)
+        for(int i = 0; i < XCOMAgents; i++)
         {
-            Instantiate(unitPrefab, new Vector3(spawnPosition.x, spawnPosition.y, 0f), Quaternion.identity);
+            GameObject newUnit = Instantiate<GameObject>(unitPrefab, spawnPosition, Quaternion.identity);
             if (spawnPosition.x == 1)
             {
                 spawnPosition.x = 0;
@@ -22,6 +31,13 @@ public class BattlescapeManager : Singleton<BattlescapeManager>
                 
             else
                 spawnPosition.x += 1;
+
+            Units.Add(newUnit);
         }
+    }
+
+    public List<GameObject> GetUnits()
+    {
+        return Units;
     }
 }

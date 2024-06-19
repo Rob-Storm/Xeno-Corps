@@ -14,22 +14,6 @@ public class GameManager : Singleton<GameManager>
     public void GameStateTransition(GameState NewGameState)
     {
         GameState = NewGameState;
-
-        switch (NewGameState)
-        {
-            case GameState.Geoscape:
-                ManagerGameObject.AddComponent<GeoscapeCamera>();
-                break;
-            case GameState.Briefing:
-                break;
-            case GameState.BattleScape:
-                ManagerGameObject.AddComponent<BattlescapeCamera>();
-                break;
-            default:
-                Debug.LogWarning("No Valid GameState Set!");
-                break;
-        }
-
         OnGameStateChanged?.Invoke(this, new StateEventArgs(GameState));
     }
 

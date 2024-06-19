@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,10 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
 
     private Unit selectedUnit;
     private int selectedIndex;
+
+    public delegate void SelectedUnitChanged(object sender, UnitEventArgs e);
+
+    public event SelectedUnitChanged OnSelectedUnitChanged;
 
     private void Awake()
     {
@@ -26,8 +31,8 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
 
     private void Start()
     {
-        SelectUnit(BattlescapeManager.Instance.Units[0]);
         selectedIndex = 0;
+        SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());
     }
 
     private void Update()
@@ -57,10 +62,10 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             selectedIndex++;
-            if( selectedIndex >= BattlescapeManager.Instance.Units.Count)
+            if( selectedIndex >= BattlescapeManager.Instance.GetUnits().Count)
                 selectedIndex = 0;
 
-            SelectUnit(BattlescapeManager.Instance.Units[selectedIndex]);
+            SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());
         }
     }
 
@@ -76,6 +81,17 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
 
         BattlescapeCamera.Instance.Camera.transform.position = new Vector3(selectedUnit.transform.position.x, selectedUnit.transform.position.y, -10);
 
-        Debug.Log($"Selected Unit: {selectedUnit}|{selectedIndex}");
+        OnSelectedUnitChanged?.Invoke(this, new UnitEventArgs(unit));
+    }
+}
+
+
+public class UnitEventArgs : EventArgs
+{
+    public Unit Unit;
+
+    public UnitEventArgs(Unit unit)
+    {
+        Unit = unit;
     }
 }

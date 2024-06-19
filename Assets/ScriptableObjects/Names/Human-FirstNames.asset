@@ -9,9 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b991686a2c1988c49b342f5476d1452d, type: 3}
-  m_Name: Pistol
+  m_Script: {fileID: 11500000, guid: c1eb2e707467e0b40a1ff0bdbec142b5, type: 3}
+  m_Name: Human-FirstNames
   m_EditorClassIdentifier: 
-  Name: Pistol
-  Weight: 4
-  AmmoType: {fileID: 11400000, guid: 93a699a0a18473a4c87e5d646fcc1884, type: 2}
+  Name:
+  - James
+  - Robert
+  - John
+  - Michael
+  - David
+  - William
+  - Richard
+  - Joseph
+  - Thomas
+  - Christopher

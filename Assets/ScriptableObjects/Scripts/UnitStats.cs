@@ -1,9 +1,8 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Unit Stats", menuName = "Create New Unit Stats")]
+[CreateAssetMenu(fileName = "New Unit", menuName = "Create New Unit")]
 public class UnitStats : ScriptableObject
 {
-    [Header("Unit Stats")]
     [Header("Primary Stats")]
     public int Bravery;
     public int Reactions;
