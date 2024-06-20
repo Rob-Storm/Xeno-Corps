@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    private GameObject UIObject;
     public TMP_Text AgentNameText;
 
 
@@ -15,6 +16,11 @@ public class InventoryUI : MonoBehaviour
     private void OnDisable()
     {
         UnitSelectionManager.Instance.OnSelectedUnitChanged -= Instance_OnSelectedUnitChanged;
+    }
+
+    public void CloseInventory()
+    {
+        UIObject.SetActive(false);
     }
 
     private void Instance_OnSelectedUnitChanged(object sender, UnitEventArgs e)
