@@ -5,8 +5,9 @@ public class InputManager : Singleton<InputManager>
 {
     private PlayerActions inputActions;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputActions = new PlayerActions();
         inputActions.Camera.Enable();
         inputActions.GeoShortcuts.Enable();

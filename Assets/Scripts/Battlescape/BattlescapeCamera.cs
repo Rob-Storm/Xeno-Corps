@@ -6,8 +6,9 @@ public class BattlescapeCamera : Singleton<BattlescapeCamera>
 {
     public Camera Camera;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Camera = GameObject.Find("Camera").GetComponent<Camera>();
     }
 

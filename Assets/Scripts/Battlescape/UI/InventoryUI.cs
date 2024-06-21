@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    private GameObject UIObject;
-    public TMP_Text AgentNameText;
+    [SerializeField] private GameObject UIObject;
+    [SerializeField] private TMP_Text AgentNameText;
 
 
     private void OnEnable()

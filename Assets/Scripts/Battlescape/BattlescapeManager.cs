@@ -12,8 +12,9 @@ public class BattlescapeManager : Singleton<BattlescapeManager>
 
     public event EventHandler OnFinishedSpawning;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Units = new List<GameObject>();
     }
 

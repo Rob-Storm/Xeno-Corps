@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BattlescapeUI : MonoBehaviour
 {
-    public TMP_Text AgentNameText;
-    public TMP_Text TimeUnitsText;
+    [SerializeField] private TMP_Text AgentNameText;
+    [SerializeField] private TMP_Text TimeUnitsText;
+
+    [SerializeField] private GameObject InventoryUI;
 
     private void OnEnable()
     {
@@ -20,5 +22,10 @@ public class BattlescapeUI : MonoBehaviour
     {
         AgentNameText.text = e.Unit.Name;
         TimeUnitsText.text = $"Time Units: {e.Unit.TimeUnits}/{e.Unit.GetStats().TimeUnits}";
+    }
+
+    public void OpenInventory()
+    {
+        InventoryUI.SetActive(true);
     }
 }
