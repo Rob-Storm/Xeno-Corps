@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
@@ -8,6 +9,8 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
     private Unit selectedUnit;
     private int selectedIndex;
 
+    private List<IObserver<Unit>> observers = new List<IObserver<Unit>>();
+
     public delegate void SelectedUnitChanged(object sender, UnitEventArgs e);
 
     public event SelectedUnitChanged OnSelectedUnitChanged;
@@ -15,13 +18,11 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
     protected override void Awake()
     {
         base.Awake();
-        //Debug.Log($"{this.GetType().Name} Awake called.");
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        Debug.Log($"{this.GetType().Name} OnDestroy called.");
     }
 
     private void OnEnable()
