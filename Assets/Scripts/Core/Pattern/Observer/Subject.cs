@@ -8,7 +8,7 @@ public class Subject
 
     public void AddObserver(IObserver observer)
     {
-
+        observers.Add(observer);
     }
 
     public void RemoveObserver(IObserver observer)
@@ -16,13 +16,13 @@ public class Subject
         if (observers.Contains(observer))
             observers.Remove(observer);
         else
-            Debug.LogError($"Subject list does not contain '{observer}'!");
+            Debug.LogError($"Observers list does not contain '{observer}'!");
     }
-    public void NotifyObservers()
+    public void NotifyObservers(object parameter)
     {
         foreach (IObserver observer in observers) 
         {
-            observer.OnNotify();
+            observer.OnNotify(parameter);
         } 
     }
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class SubjectComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Subject subject = new Subject();
+
+    private void Start()
     {
-        
+        subject.AddObserver(new ConcreteObserver());
+        subject.AddObserver(new ConcreteObserver());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            subject.NotifyObservers(null);
+        }
     }
 }
