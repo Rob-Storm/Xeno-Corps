@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
-public class BattlescapeManager : Singleton<BattlescapeManager>
+public class BattlescapeManager : SceneSingleton<BattlescapeManager>
 {
     [SerializeField] private List<GameObject> Units;
     [SerializeField] private GameObject unitPrefab;

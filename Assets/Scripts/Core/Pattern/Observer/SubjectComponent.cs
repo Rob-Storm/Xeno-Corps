@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Test class for observer pattern
+/// </summary>
 public class SubjectComponent : MonoBehaviour
 {
     private Subject subject = new Subject();

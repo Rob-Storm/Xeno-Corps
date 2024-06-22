@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UnitSelectionManager : Singleton<UnitSelectionManager>
+public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 {
     [SerializeField] private LayerMask unitLayerMask;
 
@@ -11,6 +11,18 @@ public class UnitSelectionManager : Singleton<UnitSelectionManager>
     public delegate void SelectedUnitChanged(object sender, UnitEventArgs e);
 
     public event SelectedUnitChanged OnSelectedUnitChanged;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        //Debug.Log($"{this.GetType().Name} Awake called.");
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Debug.Log($"{this.GetType().Name} OnDestroy called.");
+    }
 
     private void OnEnable()
     {
