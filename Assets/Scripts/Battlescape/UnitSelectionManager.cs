@@ -15,16 +15,6 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 
     public event SelectedUnitChanged OnSelectedUnitChanged;
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
-
     private void OnEnable()
     {
         BattlescapeManager.Instance.OnFinishedSpawning += Instance_OnFinishedSpawning;
@@ -48,6 +38,7 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 
     private void HandleUnitSelection()
     {
+        //this is basically useless since I cannot seem to select units with the mouse
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = BattlescapeCamera.Instance.Camera.ScreenPointToRay(Input.mousePosition);
@@ -67,14 +58,18 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            selectedIndex++;
-            if( selectedIndex >= BattlescapeManager.Instance.GetUnits().Count)
-                selectedIndex = 0;
-
-            SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());
+            CycleUnitSelection();
         }
     }
 
+    private void CycleUnitSelection()
+    {
+        selectedIndex++;
+        if (selectedIndex >= BattlescapeManager.Instance.GetUnits().Count)
+            selectedIndex = 0;
+
+        SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());
+    }
     private void SelectUnit(Unit unit)
     {
         if (selectedUnit != null)

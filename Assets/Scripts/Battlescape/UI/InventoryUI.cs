@@ -6,6 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject UIObject;
     [SerializeField] private TMP_Text AgentNameText;
+    [SerializeField] private GameObject ItemSlotHolder;
 
 
     private void OnEnable()
