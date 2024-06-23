@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public interface IDamageable
+public class ItemSlotUI : MonoBehaviour
 {
-    public void Damage(int amount);
+    public TMP_Text nameText;
 }

@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
     [SerializeField] private NamesTable FirstNamesList;
     [SerializeField] private NamesTable LastNamesList;
 
+    [SerializeField] private InventoryComponent inventoryComponent;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,11 +28,9 @@ public class Unit : MonoBehaviour
         Name = $"{FirstNamesList.Name[random.Next(0, 9)]} {LastNamesList.Name[random.Next(0,9)]}";
     }
 
-    public UnitStats GetStats()
-    {
-        return stats;
-    }
+    public InventoryComponent GetInventory() => inventoryComponent;
 
+    public UnitStats GetStats() => stats;
     public void Select()
     {
         IsSelected = true;

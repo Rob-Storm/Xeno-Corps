@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IDamageable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int health;
+
+    public void Damage(int amount)
     {
-        
+        health  -= amount;
+        if (health <= 0)
+            Die();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Die()
     {
-        
+
     }
 }

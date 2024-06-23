@@ -15,20 +15,24 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 
     public event SelectedUnitChanged OnSelectedUnitChanged;
 
+    public ObjectBase item;
+
     private void OnEnable()
     {
-        BattlescapeManager.Instance.OnFinishedSpawning += Instance_OnFinishedSpawning;
+        BattlescapeManager.Instance.OnFinishedSpawning += UnitSelectionManager_OnFinishedSpawning;
     }
 
     private void OnDisable()
     {
-        BattlescapeManager.Instance.OnFinishedSpawning -= Instance_OnFinishedSpawning;
+        BattlescapeManager.Instance.OnFinishedSpawning -= UnitSelectionManager_OnFinishedSpawning;
     }
 
-    private void Instance_OnFinishedSpawning(object sender, EventArgs e)
+    private void UnitSelectionManager_OnFinishedSpawning(object sender, EventArgs e)
     {
         selectedIndex = 0;
         SelectUnit(BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>());
+
+        BattlescapeManager.Instance.GetUnits()[selectedIndex].GetComponent<Unit>().GetInventory().AddItem(item);
     }
 
     private void Update()
@@ -90,7 +94,6 @@ public class UnitSelectionManager : SceneSingleton<UnitSelectionManager>
 public class UnitEventArgs : EventArgs
 {
     public Unit Unit;
-
     public UnitEventArgs(Unit unit)
     {
         Unit = unit;
